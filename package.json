@@ -1,0 +1,27 @@
+{
+  "name": "questions-answers-api",
+  "version": "1.0.0",
+  "description": "questions and answers api",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpp33-sdc-tulip/questions-answers-api.git"
+  },
+  "author": "Jeff Sparrow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpp33-sdc-tulip/questions-answers-api/issues"
+  },
+  "homepage": "https://github.com/rpp33-sdc-tulip/questions-answers-api#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}

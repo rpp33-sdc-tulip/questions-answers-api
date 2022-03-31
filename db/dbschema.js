@@ -17,10 +17,10 @@ db
     id bigserial NOT NULL,
     product_id bigint NOT NULL,
     question_body varchar(1000) NOT NULL,
-    date date NOT NULL,
+    date varchar NOT NULL,
     asker_name varchar(60) NOT NULL,
     asker_email varchar(60) NOT NULL,
-    reported boolean,
+    reported smallint,
     question_helpfulness smallint,
     PRIMARY KEY(id)
   );
@@ -29,17 +29,18 @@ db
     id bigserial NOT NULL,
     "Questions_id" bigint NOT NULL,
     body varchar(1000) NOT NULL,
-    date date NOT NULL,
+    date varchar NOT NULL,
     answerer_name varchar(60) NOT NULL,
-    reported boolean NOT NULL,
+    asker_email varchar(60) NOT NULL,
+    reported smallint NOT NULL,
     helpfulness smallint,
     PRIMARY KEY(id)
   );
 
   CREATE TABLE photos(
     id bigserial NOT NULL,
-    photo_url character NOT NULL,
     "Answers_id" bigint NOT NULL,
+    photo_url varchar NOT NULL,
     PRIMARY KEY(id)
   );
 

@@ -19,13 +19,13 @@ app.get('/qa/questions', (req, res) => {
   console.log(req.query);
   db.getQuestions(req.query, (err, data) => {
     console.log('data in server', data);
-    res.status(200).send(data);
+    // res.status(200).send(data);
     console.log('data in server', data);
     if (err) {
       console.log('ERROR with get request: ', err);
       res.status(500).send(err);
     } else {
-      res.status(500).send(data);
+      res.status(200).send(data);
     }
   });
 });
@@ -43,8 +43,9 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running on port ${port}`);
+// });
 
-module.exports = port;
+// module.exports = port;
+module.exports = app;

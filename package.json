@@ -4,7 +4,7 @@
   "description": "questions and answers api",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "start": "nodemon server/app.js"
   },
   "repository": {
@@ -20,7 +20,8 @@
   "dependencies": {
     "express": "^4.17.3",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "supertest": "^6.2.2"
   },
   "devDependencies": {
     "eslint": "^8.11.0",

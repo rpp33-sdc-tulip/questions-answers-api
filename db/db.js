@@ -28,7 +28,7 @@ const getAnswers = (params, callback) => {
         const formattedResult = {
           answer_id: parseInt(row.id, 10),
           body: row.body,
-          date: new Date(parseInt(row.date, 10) / 1000),
+          date: new Date(parseInt(row.date)),
           answerer_name: row.answerer_name,
           helpfulness: row.helpfulness,
           // Need to make Photos query here
@@ -45,6 +45,7 @@ const getAnswers = (params, callback) => {
     });
 };
 
+// Could I use joins and get all data with one query?
 const getQuestions = (params, callback) => {
   // query db for questions
   const finalData = {
@@ -58,7 +59,7 @@ const getQuestions = (params, callback) => {
         const questionObject = {
           question_id: question.id,
           question_body: question.question_body,
-          question_date: new Date(parseInt(question.date, 10) / 1000),
+          question_date: new Date(parseInt(question.date)),
           asker_name: question.asker_name,
           question_helpfulness: question.question_helpfulness,
           // Hardcoded, need to fix *********** FIX ME **********
@@ -73,7 +74,7 @@ const getQuestions = (params, callback) => {
               questionObject.answers[answer.id] = {
                 id: answer.id,
                 body: answer.body,
-                date: new Date(parseInt(answer.date, 10) / 1000),
+                date: new Date(parseInt(answer.date)),
                 answerer_name: answer.answerer_name,
                 helpfulness: answer.helpfulness,
                 // Need to query photos ********** FIX ME *****************
@@ -91,5 +92,18 @@ const getQuestions = (params, callback) => {
     });
 };
 
+const voteQuestionHelpful = (questionId, callback) => {
+  db
+    .query(`UPDATE questions SET question_helpfulness = question_helpfulness + 1
+    WHERE id = ${questionId}`)
+    .then((res) => {
+      callback(null, res);
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
 module.exports.getAnswers = getAnswers;
 module.exports.getQuestions = getQuestions;
+module.exports.voteQuestionHelpful = voteQuestionHelpful;

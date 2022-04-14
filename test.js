@@ -18,3 +18,8 @@ test('GET answers returns status 500 if no id param', async () => {
   // console.log('RESPONSE __________________', response);
   expect(response.statusCode).toBe(500);
 });
+
+// TODO:
+// TEST PUT REQUEST VOTE QUESTION HELPFUL
+// TEST SAMPLE DATA FOR GET REQUESTS
+// TEST POST REQUESTS

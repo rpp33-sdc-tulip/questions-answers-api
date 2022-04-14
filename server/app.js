@@ -1,26 +1,18 @@
 const express = require('express');
-
 const app = express();
-const port = 8080;
+const cors = require('cors');
 const db = require('../db/db');
 
-// app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('SDC');
 });
 
 app.get('/qa/questions', (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   db.getQuestions(req.query, (err, data) => {
-    console.log('data in server', data);
-    // res.status(200).send(data);
-    console.log('data in server', data);
+    // console.log('data in server', data);
     if (err) {
       console.log('ERROR with get request: ', err);
       res.status(500).send(err);
@@ -31,9 +23,9 @@ app.get('/qa/questions', (req, res) => {
 });
 
 app.get('/qa/questions/:question_id/answers', (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   db.getAnswers(req.query, (err, data) => {
-    console.log('data in server', data);
+    // console.log('data in server', data);
     if (err) {
       console.log('ERROR with get request: ', err);
       res.status(500).send(err);
@@ -43,9 +35,15 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
   });
 });
 
-// app.listen(port, () => {
-//   console.log(`Server running on port ${port}`);
-// });
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  console.log('PUT REQUEST', req.params);
+  db.voteQuestionHelpful(req.params.question_id, (err) => {
+    if (err) {
+      res.status(400).end();
+    } else {
+      res.status(204).end();
+    }
+  });
+});
 
-// module.exports = port;
 module.exports = app;

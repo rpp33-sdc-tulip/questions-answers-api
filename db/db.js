@@ -96,14 +96,19 @@ const voteQuestionHelpful = (questionId, callback) => {
   db
     .query(`UPDATE questions SET question_helpfulness = question_helpfulness + 1
     WHERE id = ${questionId}`)
-    .then((res) => {
-      callback(null, res);
-    })
-    .catch((err) => {
-      callback(err, null);
-    });
+    .then(() => { callback(null); })
+    .catch((err) => { callback(err); });
+};
+
+const reportQuestion = (questionId, callback) => {
+  db
+    .query(`UPDATE questions SET reported = 1
+    WHERE id = ${questionId}`)
+    .then(() => { callback(null); })
+    .catch((err) => { callback(err); });
 };
 
 module.exports.getAnswers = getAnswers;
 module.exports.getQuestions = getQuestions;
 module.exports.voteQuestionHelpful = voteQuestionHelpful;
+module.exports.reportQuestion = reportQuestion;

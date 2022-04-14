@@ -36,8 +36,17 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 });
 
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  console.log('PUT REQUEST', req.params);
   db.voteQuestionHelpful(req.params.question_id, (err) => {
+    if (err) {
+      res.status(400).end();
+    } else {
+      res.status(204).end();
+    }
+  });
+});
+
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  db.reportQuestion(req.params.question_id, (err) => {
     if (err) {
       res.status(400).end();
     } else {

@@ -55,4 +55,24 @@ app.put('/qa/questions/:question_id/report', (req, res) => {
   });
 });
 
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  db.voteAnswerHelpful(req.params.answer_id, (err) => {
+    if (err) {
+      res.status(400).end();
+    } else {
+      res.status(204).end();
+    }
+  });
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  db.reportAnswer(req.params.answer_id, (err) => {
+    if (err) {
+      res.status(400).end();
+    } else {
+      res.status(204).end();
+    }
+  });
+});
+
 module.exports = app;

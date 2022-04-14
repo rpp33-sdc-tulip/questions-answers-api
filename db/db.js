@@ -108,7 +108,25 @@ const reportQuestion = (questionId, callback) => {
     .catch((err) => { callback(err); });
 };
 
+const voteAnswerHelpful = (answerId, callback) => {
+  db
+    .query(`UPDATE answers SET helpfulness = helpfulness + 1
+    WHERE id = ${answerId}`)
+    .then(() => { callback(null); })
+    .catch((err) => { callback(err); });
+};
+
+const reportAnswer = (answerId, callback) => {
+  db
+    .query(`UPDATE answers SET reported = 1
+    WHERE id = ${answerId}`)
+    .then(() => { callback(null); })
+    .catch((err) => { callback(err); });
+};
+
 module.exports.getAnswers = getAnswers;
 module.exports.getQuestions = getQuestions;
 module.exports.voteQuestionHelpful = voteQuestionHelpful;
 module.exports.reportQuestion = reportQuestion;
+module.exports.voteAnswerHelpful = voteAnswerHelpful;
+module.exports.reportAnswer = reportAnswer;

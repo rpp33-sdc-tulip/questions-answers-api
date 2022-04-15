@@ -50,6 +50,16 @@ app.post('/qa/questions', (req, res) => {
   });
 });
 
+app.post('/qa/questions/:question_id/answers', (req, res) => {
+  db.addAnswer(req.params.question_id, req.body, (err) => {
+    if (err) {
+      res.status(422).end();
+    } else {
+      res.status(201).end();
+    }
+  });
+});
+
 // ************* PUT ROUTES ******************
 
 app.put('/qa/questions/:question_id/helpful', (req, res) => {

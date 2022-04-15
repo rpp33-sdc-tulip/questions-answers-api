@@ -94,10 +94,18 @@ const getQuestions = (params, callback) => {
 
 const addQuestion = (question, callback) => {
   const timestamp = new Date().getTime();
-  console.log(timestamp);
   db
     .query(`INSERT INTO questions(product_id, question_body, date, asker_name, asker_email, reported, question_helpfulness)
     VALUES (${question.product_id}, '${question.body}', '${timestamp}', '${question.name}', '${question.email}', 0, 0)`)
+    .then(() => { callback(null); })
+    .catch((err) => { callback(err); });
+};
+
+const addAnswer = (questionId, answer, callback) => {
+  const timestamp = new Date().getTime();
+  db
+    .query(`INSERT INTO answers("Questions_id", body, date, answerer_name, asker_email, reported, helpfulness)
+    VALUES (${questionId}, '${answer.body}', '${timestamp}', '${answer.name}', '${answer.email}', 0, 0)`)
     .then(() => { callback(null); })
     .catch((err) => { callback(err); });
 };
@@ -141,3 +149,4 @@ module.exports.reportQuestion = reportQuestion;
 module.exports.voteAnswerHelpful = voteAnswerHelpful;
 module.exports.reportAnswer = reportAnswer;
 module.exports.addQuestion = addQuestion;
+module.exports.addAnswer = addAnswer;

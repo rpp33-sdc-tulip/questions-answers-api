@@ -41,23 +41,11 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 
 // ************* POST ROUTES ******************
 app.post('/qa/questions', (req, res) => {
-  const timestamp = new Date().getTime();
-  // let question = {
-  //   product_id: req.body.product_id,
-  //   question_body: req.body.body,
-  //   date: timestamp,
-  //   asker_name: req.body.name,
-  //   asker_email: req.body.email,
-  //   reported: 0,
-  //   question_helpfulness: 0,
-  // };
-  // let question = []
-  // console.log('BUILT QUESTION', question);
   db.addQuestion(req.body, (err) => {
     if (err) {
-      console.log('ERROR: ', err);
+      res.status(422).end();
     } else {
-      console.log('SUCCESS');
+      res.status(201).end();
     }
   });
 });

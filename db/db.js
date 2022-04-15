@@ -98,8 +98,8 @@ const addQuestion = (question, callback) => {
   db
     .query(`INSERT INTO questions(product_id, question_body, date, asker_name, asker_email, reported, question_helpfulness)
     VALUES (${question.product_id}, '${question.body}', '${timestamp}', '${question.name}', '${question.email}', 0, 0)`)
-    .then((res) => {console.log('DB RESPONSE', res)})
-    .catch((err) => {console.log('DB ERROR', err)});
+    .then(() => { callback(null); })
+    .catch((err) => { callback(err); });
 };
 
 const voteQuestionHelpful = (questionId, callback) => {

@@ -1,13 +1,17 @@
 const express = require('express');
 const app = express();
+const bp = require('body-parser');
 const cors = require('cors');
 const db = require('../db/db');
 
 app.use(cors());
+app.use(bp.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
   res.send('SDC');
 });
+
+// ************* GET ROUTES ******************
 
 app.get('/qa/questions', (req, res) => {
   // console.log(req.query);
@@ -34,6 +38,31 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
     }
   });
 });
+
+// ************* POST ROUTES ******************
+app.post('/qa/questions', (req, res) => {
+  const timestamp = new Date().getTime();
+  // let question = {
+  //   product_id: req.body.product_id,
+  //   question_body: req.body.body,
+  //   date: timestamp,
+  //   asker_name: req.body.name,
+  //   asker_email: req.body.email,
+  //   reported: 0,
+  //   question_helpfulness: 0,
+  // };
+  // let question = []
+  // console.log('BUILT QUESTION', question);
+  db.addQuestion(req.body, (err) => {
+    if (err) {
+      console.log('ERROR: ', err);
+    } else {
+      console.log('SUCCESS');
+    }
+  });
+});
+
+// ************* PUT ROUTES ******************
 
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   db.voteQuestionHelpful(req.params.question_id, (err) => {

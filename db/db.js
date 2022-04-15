@@ -92,6 +92,16 @@ const getQuestions = (params, callback) => {
     });
 };
 
+const addQuestion = (question, callback) => {
+  const timestamp = new Date().getTime();
+  console.log(timestamp);
+  db
+    .query(`INSERT INTO questions(product_id, question_body, date, asker_name, asker_email, reported, question_helpfulness)
+    VALUES (${question.product_id}, '${question.body}', '${timestamp}', '${question.name}', '${question.email}', 0, 0)`)
+    .then((res) => {console.log('DB RESPONSE', res)})
+    .catch((err) => {console.log('DB ERROR', err)});
+};
+
 const voteQuestionHelpful = (questionId, callback) => {
   db
     .query(`UPDATE questions SET question_helpfulness = question_helpfulness + 1
@@ -130,3 +140,4 @@ module.exports.voteQuestionHelpful = voteQuestionHelpful;
 module.exports.reportQuestion = reportQuestion;
 module.exports.voteAnswerHelpful = voteAnswerHelpful;
 module.exports.reportAnswer = reportAnswer;
+module.exports.addQuestion = addQuestion;

@@ -4,8 +4,8 @@
   "description": "questions and answers api",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
-    "start": "nodemon server/app.js"
+    "test": "jest --detectOpenHandles",
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/rpp33-sdc-tulip/questions-answers-api#readme",
   "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "supertest": "^6.2.2"
   },
   "devDependencies": {
     "eslint": "^8.11.0",

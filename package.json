@@ -4,7 +4,7 @@
   "description": "questions and answers api",
   "main": "app.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest",
     "start": "nodemon server/server.js"
   },
   "repository": {

@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('./server/app');
+const app = require('../server/app');
 // increase to 20 seconds due to long query times
 jest.setTimeout(20000);
 

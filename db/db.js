@@ -46,6 +46,8 @@ const getAnswers = (params, callback) => {
 };
 
 // Could I use joins and get all data with one query?
+// Subqueries
+// GroubBy
 const getQuestions = (params, callback) => {
   // query db for questions
   const finalData = {

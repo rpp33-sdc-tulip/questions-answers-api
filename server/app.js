@@ -54,10 +54,8 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
   console.log(req.body);
   db.addAnswer(req.params.question_id, req.body, (err) => {
     if (err) {
-      console.log('err');
       res.status(422).end();
     } else {
-      console.log('201');
       res.status(201).end();
     }
   });

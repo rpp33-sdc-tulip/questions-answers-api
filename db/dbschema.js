@@ -58,9 +58,9 @@ db
   `,
   )
   .then((res) => {
-    console.log(res);
+    console.log('RESPONSE', res);
     db.end();
   })
   .catch((err) => {
-    console.log(err);
+    console.log('ERROR', err);
   });

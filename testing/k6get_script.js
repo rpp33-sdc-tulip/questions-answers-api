@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { sleep } from 'k6';
 
 export const options = {
-  vus: 1,
+  vus: 1000,
   duration: '30s',
 };
 
@@ -11,12 +11,15 @@ const randomProductId = Math.trunc(Math.random() * (298010 - 268209) + 268209);
 const randomQuestionsId = Math.trunc(Math.random() * (536416 - 482774) + 482774);
 
 const BASE_URL = 'http://localhost:8080';
-const getQuestions = http.get(`${BASE_URL}/qa/questions?product_id=${randomProductId}`);
-const getAnswers = http.get(`${BASE_URL}/qa/questions/${randomQuestionsId}/answers`);
+// const getQuestions = http.get(`${BASE_URL}/qa/questions?product_id=${randomProductId}`);
+// const getAnswers = http.get(`${BASE_URL}/qa/questions/${randomQuestionsId}/answers`);
 
 export default function () {
-  // get request here
+  const getAnswers = http.get(`${BASE_URL}/qa/questions/${randomQuestionsId}/answers`);
+  const getQuestions = http.get(`${BASE_URL}/qa/questions?product_id=${randomProductId}`);
 
+  // get request here
+  getAnswers;
   sleep(1);
 }
 

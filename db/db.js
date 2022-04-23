@@ -7,7 +7,6 @@ db.connect((err, res) => {
   if (err) {
     console.log('ERROR', err);
   }
-  // console.log('RESPONSE', res);
 });
 
 // get answers db query

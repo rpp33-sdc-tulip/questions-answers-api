@@ -50,12 +50,17 @@ db
 
   ALTER TABLE answers
     ADD CONSTRAINT "Questions_Answers"
-      FOREIGN KEY ("Questions_id") REFERENCES questions (id);`,
+      FOREIGN KEY ("Questions_id") REFERENCES questions (id);
+
+  CREATE INDEX product_index on questions (product_id);
+
+  CREATE INDEX question_index on answers ("Questions_id");
+  `,
   )
   .then((res) => {
-    console.log(res);
+    console.log('RESPONSE', res);
     db.end();
   })
   .catch((err) => {
-    console.log(err);
+    console.log('ERROR', err);
   });

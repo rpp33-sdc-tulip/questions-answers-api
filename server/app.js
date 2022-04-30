@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 // ************* GET ROUTES ******************
 
 app.get('/qa/questions', (req, res) => {
-  // console.log(req.query);
+  console.log(req.query);
   db.getQuestions(req.query, (err, data) => {
     // console.log('data in server', data);
     if (err) {

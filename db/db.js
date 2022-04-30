@@ -1,8 +1,11 @@
-const { Client } = require('pg');
+/* eslint-disable no-console */
+/* eslint-disable radix */
+const { Pool } = require('pg');
 const dbconfig = require('../config');
 
 // create new db connection
-const db = new Client(dbconfig.cn);
+const db = new Pool(dbconfig.cn);
+// eslint-disable-next-line no-unused-vars
 db.connect((err, res) => {
   if (err) {
     console.log('ERROR', err);
